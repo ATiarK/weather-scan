@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --blue-gradient: linear-gradient(
+    180deg,
+    rgba(14, 165, 233, 1) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
@@ -18,4 +27,13 @@ code {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.custom-gradient {
+  background: var(--blue-gradient);
+  outline-style: inset;
+}
+
+.bg-gradient {
+  background: var(--blue-gradient);
 }

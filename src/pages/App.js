@@ -1,15 +1,38 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import API, { API_Key, searchLocation } from "./apis/api";
-import WeatherStatus from "./components/Status";
-import TemperatureCard from "./components/Card";
-import { WideCard } from "./components/Card";
+import API, { API_Key, searchLocation } from "../apis/api";
+import getCoordinate from "../functions/coordinate";
+import TemperatureCard, { WideCard, WeatherStatus } from "../components/Card";
+import Header from "../components/Header";
 
 function App() {
   const [data, setData] = useState({});
   const [city, setCity] = useState("");
   const [tomorrow, setTomorrow] = useState({});
+  const [myLocation, setMyLocation] = useState({});
 
+  // get current location (latitude and longitude)
+  useEffect(() => {
+    getCoordinate(setMyLocation);
+  }, []);
+
+  // fetch data by the current location
+  useEffect(() => {
+    if (Object.keys(data).length === 0) {
+      if (myLocation.latitude && myLocation.longitude !== undefined) {
+        const { latitude, longitude } = myLocation;
+        axios
+          .get(
+            `${API}/weather?lat=${latitude}&lon=${longitude}&appid=${API_Key}&units=metric`
+          )
+          .then((res) => {
+            setData(res.data);
+          });
+      }
+    }
+  }, [data, myLocation]);
+
+  // fetch forecast data
   useEffect(() => {
     if (data !== {} || data !== undefined) {
       if (data.coord !== undefined) {
@@ -45,7 +68,6 @@ function App() {
       </div>
 
       {data.main && TemperatureCard(data)}
-
       {data.main && (
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 m-3 text-center">
           <WeatherStatus label="Humidity" value={`${data.main.humidity}%`} />
@@ -65,16 +87,12 @@ function App() {
 
       {tomorrow.list && (
         <>
-          <div className="flex flex-col gap-3 my-20">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-4 bg-sky-500 rounded-t-lg h-16 text-center sticky top-0 shadow-md px-7 font-bold">
-              <p className="my-auto">Date</p>
-              <p className="my-auto">Hour</p>
-              <p className="my-auto">Weather</p>
-              <p className="my-auto hidden md:block">Humidity</p>
-              <p className="my-auto hidden md:block">Temperature</p>
-              <p className="my-auto hidden md:block">Wind</p>
-            </div>
-
+          <hr className="border-b-2 border-gray-200 my-10" />
+          <div className="flex flex-col gap-3 my-5">
+            <h3 className="text-center text-2xl font-bold w-fit mx-auto px-5 text-white shadow-xl rounded-xl mb-5">
+              Forecast
+            </h3>
+            <Header />
             {tomorrow.list.map((day) => WideCard(day))}
           </div>
         </>
