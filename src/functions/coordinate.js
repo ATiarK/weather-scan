@@ -7,7 +7,7 @@ const getCoordinate = (setMyLocation) => {
         setMyLocation({ latitude, longitude });
       },
       (error) => {
-        console.log(error);
+        alert("Please allow location permission");
       },
       {
         enableHighAccuracy: true,

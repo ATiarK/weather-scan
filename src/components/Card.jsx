@@ -15,6 +15,9 @@ export default function TemperatureCard(data) {
       <p className="text-8xl font-bold mx-auto">
         {data.main.feels_like.toFixed()}&deg;C
       </p>
+      <p className="text-2xl font-bold my-auto mx-auto">
+        {data.weather[0].description}
+      </p>
     </div>
   );
 }

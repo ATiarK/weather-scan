@@ -14,7 +14,7 @@
 - [Built With](#built-with)
 - [Related Links](#links)
 
-### Overview
+## Overview
 
 ### Goals
 
@@ -29,9 +29,11 @@
 ### Screenshots
 
 > #### Desktop Preview
+
 ![Desktop](./src/assets/desktop_preview.png)
 
 > #### Mobile Preview
+
 ![Mobile](./src/assets/mobile_preview.png)
 
 ### Built With
@@ -42,6 +44,6 @@
 
 ### Links
 
-> **![OpenWeather](https://openweathermap.org/api)**
+> **[OpenWeather](https://openweathermap.org/api)**
 
-> **![Live Site](https://weather-prediction-three.vercel.app/)**
+> **[Live Site](https://weather-prediction-three.vercel.app/)**
