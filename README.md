@@ -22,18 +22,16 @@
 
 ### Features
 
-- [x] Check Weather based on Current Location
-- [x] Check Weather by Location Search
-- [x] Provide Forecast for the next day
+- [x] Check Weather based on **Current Location**
+- [x] Check Weather by **Location Search**
+- [x] Provide **Forecast** for the next day
 
 ### Screenshots
 
 > #### Desktop Preview
-
 ![Desktop](./src/assets/desktop_preview.png)
 
 > #### Mobile Preview
-
 ![Mobile](./src/assets/mobile_preview.png)
 
 ### Built With
@@ -44,5 +42,6 @@
 
 ### Links
 
-![OpenWeather](https://openweathermap.org/api)
-![Live Site](https://weather-prediction-three.vercel.app/)
+> **![OpenWeather](https://openweathermap.org/api)**
+
+> **![Live Site](https://weather-prediction-three.vercel.app/)**
