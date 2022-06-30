@@ -26,7 +26,7 @@ function App() {
   }, [data]);
 
   return (
-    <div className="h-screen overflow-auto bg-gray-100">
+    <div className="background h-screen overflow-auto bg-gray-100">
       <div className="px-5 py-2 bg-white flex gap-4">
         <input
           className="w-full md:w-11/12 border-2 border-gray-200 rounded-lg px-4 py-2"
@@ -34,6 +34,7 @@ function App() {
           placeholder="Search Location"
           onKeyPress={searchLocation(city, setData)}
           onChange={(e) => setCity(e.target.value)}
+          autoFocus
         />
         <button
           className="hidden md:block md:w-1/12 bg-sky-700 hover:bg-sky-500 text-white font-bold py-2 px-4 rounded-lg"
@@ -46,14 +47,14 @@ function App() {
       {data.main && TemperatureCard(data)}
 
       {data.main && (
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mx-2 my-3 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 m-3 text-center">
           <WeatherStatus label="Humidity" value={`${data.main.humidity}%`} />
           <WeatherStatus
             label="Temperature"
             value={
               data.main.temp_max.toFixed() === data.main.temp_min.toFixed()
                 ? `${data.main.temp_max.toFixed()}°C`
-                : `${data.main.temp_max.toFixed()}°C - ${data.main.temp_min.toFixed()}°C`
+                : `${data.main.temp_min.toFixed()}°C - ${data.main.temp_max.toFixed()}°C`
             }
           />
           <WeatherStatus label="Pressure" value={`${data.main.pressure} hPa`} />
@@ -63,18 +64,20 @@ function App() {
       )}
 
       {tomorrow.list && (
-        <div className="flex flex-col gap-3">
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4 bg-gray-200 rounded-lg h-16 text-center sticky top-0 shadow-md px-4">
-            <p className="my-auto">Date</p>
-            <p className="my-auto">Hour</p>
-            <p className="my-auto">Weather</p>
-            <p className="my-auto hidden md:block">Humidity</p>
-            <p className="my-auto hidden md:block">Temperature</p>
-            <p className="my-auto hidden md:block">Wind</p>
-          </div>
+        <>
+          <div className="flex flex-col gap-3 my-20">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-4 bg-sky-500 rounded-t-lg h-16 text-center sticky top-0 shadow-md px-7 font-bold">
+              <p className="my-auto">Date</p>
+              <p className="my-auto">Hour</p>
+              <p className="my-auto">Weather</p>
+              <p className="my-auto hidden md:block">Humidity</p>
+              <p className="my-auto hidden md:block">Temperature</p>
+              <p className="my-auto hidden md:block">Wind</p>
+            </div>
 
-          {tomorrow.list.map((day) => WideCard(day))}
-        </div>
+            {tomorrow.list.map((day) => WideCard(day))}
+          </div>
+        </>
       )}
     </div>
   );

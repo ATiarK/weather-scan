@@ -3,7 +3,7 @@ import "moment/locale/id";
 
 export default function TemperatureCard(data) {
   return (
-    <div className="flex flex-col px-2 md:px-10 mx-auto bg-sky-700 text-white w-full py-3 md:py-5">
+    <div className="flex flex-col px-2 md:px-10 mx-auto bg-sky-700 text-white w-full py-10">
       <div className="flex mx-auto">
         <p className="text-2xl font-bold my-auto">{data.name}</p>
         <img
@@ -24,9 +24,9 @@ export function WideCard(day) {
   return (
     <div
       key={day.dt}
-      className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4 bg-gray-200 rounded-lg h-16 text-center px-4"
+      className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4 bg-blue-200 rounded-lg h-16 text-center font-semibold px-4 mx-3"
     >
-      <p className="my-auto">{moment(day.dt_txt).format("LL")}</p>
+      <p className="my-auto">{moment(day.dt_txt).format("DD MMMM")}</p>
       <p className="my-auto">{moment(day.dt_txt).format("HH:mm:ss")}</p>
       <div className="flex flex-row justify-center">
         <img
